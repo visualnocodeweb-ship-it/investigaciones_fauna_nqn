@@ -81,7 +81,7 @@ export default function InteractiveCsvMap() {
   });
   const [kmlData, setKmlData] = useState(null);
   const [limiteNqnData, setLimiteNqnData] = useState(null);
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   useEffect(() => {
     const fetchCsvData = async () => {
