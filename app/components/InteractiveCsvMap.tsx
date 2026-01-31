@@ -125,7 +125,7 @@ export default function InteractiveCsvMap() {
   }, [allData]);
 
   useEffect(() => {
-    const fetchKml = async (filePath, setData) => {
+    const fetchKml = async (filePath: string, setData: (data: any) => void) => {
       try {
         const response = await fetch(filePath);
         const blob = await response.blob();
