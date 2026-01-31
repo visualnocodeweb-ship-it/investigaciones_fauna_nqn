@@ -36,7 +36,7 @@ const getColoredIcon = (color: string) => {
 };
 
 // Heatmap wrapper component
-const HeatmapLayer = ({ points, active }) => {
+const HeatmapLayer = ({ points, active }: { points: [number, number, number][], active: boolean }) => {
   const map = useMap();
   const heatLayerRef = useRef(null);
 
