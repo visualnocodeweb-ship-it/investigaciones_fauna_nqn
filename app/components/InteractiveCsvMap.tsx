@@ -26,7 +26,7 @@ const animalColors = {
 };
 
 // Function to create custom colored icons
-const getColoredIcon = (color) => {
+const getColoredIcon = (color: string) => {
   return L.divIcon({
     className: 'custom-div-icon',
     html: `<div style="background-color:${color}; width: 15px; height: 15px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.5);"></div>`,
