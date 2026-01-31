@@ -1,0 +1,26 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Report {
+  id           Int      @id @default(autoincrement())
+  title        String
+  description  String?
+  locationName String
+  latitude     Float
+  longitude    Float
+  images       Image[]
+  createdAt    DateTime @default(now())
+}
+
+model Image {
+  id       Int    @id @default(autoincrement())
+  data     String
+  report   Report @relation(fields: [reportId], references: [id])
+  reportId Int
+}
