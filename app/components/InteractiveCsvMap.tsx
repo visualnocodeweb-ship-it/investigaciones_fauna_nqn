@@ -51,9 +51,9 @@ const HeatmapLayer = ({ points, active }: { points: [number, number, number][], 
     }
 
     if (active) {
-      heatLayerRef.current.setLatLngs(points);
+      heatLayerRef.current!.setLatLngs(points);
     } else {
-      heatLayerRef.current.setLatLngs([]); // Clear points if not active
+      heatLayerRef.current!.setLatLngs([]); // Clear points if not active
     }
   }, [points, active, map]);
 
