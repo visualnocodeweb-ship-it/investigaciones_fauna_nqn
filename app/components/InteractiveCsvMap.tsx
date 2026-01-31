@@ -157,7 +157,7 @@ export default function InteractiveCsvMap() {
     }
   };
 
-  const pointToLayer = (feature, latlng) => {
+  const pointToLayer = (feature: { properties?: { name?: string } }, latlng: L.LatLng) => {
     return L.marker(latlng, { icon: getColoredIcon('#39FF14') }); // Verde fluorescente para Investigaciones Fauna
   };
 
