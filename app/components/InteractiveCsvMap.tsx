@@ -67,7 +67,7 @@ export default function InteractiveCsvMap() {
     setIsClient(true);
   }, []);
 
-  const [allData, setAllData] = useState([]);
+  const [allData, setAllData] = useState<{ id: number; ano: number; tipoDeAnimal: string; region: string; latitud: number; longitud: number; tipoDeIntervencion: string; }[]>([]);
   const [activeViews, setActiveViews] = useState({
     markers: false,
     kml: false,
