@@ -151,7 +151,7 @@ export default function InteractiveCsvMap() {
     fetchKml('/Límite NQN.kmz', setLimiteNqnData);
   }, []);
 
-  const onEachFeature = (feature, layer) => {
+  const onEachFeature = (feature: { properties?: { name?: string } }, layer: L.Layer) => {
     if (feature.properties && feature.properties.name) {
       layer.bindPopup(feature.properties.name);
     }
