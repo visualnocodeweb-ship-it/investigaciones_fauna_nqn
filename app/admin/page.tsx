@@ -12,6 +12,7 @@ const InteractiveCsvMap = dynamic(() => import('../components/InteractiveCsvMap'
 export default function AdminPage() {
   const router = useRouter();
   const [showPoliciaNqnMap, setShowPoliciaNqnMap] = useState(false);
+  const [showComisariasNqnMap, setShowComisariasNqnMap] = useState(false);
 
   // Protección básica cliente (idealmente usar Middleware)
   useEffect(() => {
@@ -87,11 +88,31 @@ export default function AdminPage() {
           >
             Policia Neuquén Maps
           </button>
+          <button 
+            onClick={() => setShowComisariasNqnMap(!showComisariasNqnMap)}
+            className="bg-green-500/10 text-green-400 border border-green-500/20 font-bold py-4 px-4 rounded-lg hover:bg-green-500/20 transition-all w-full sm:w-auto mt-4 sm:mt-0 sm:ml-4"
+          >
+            Comisarias NQN
+          </button>
           {showPoliciaNqnMap && (
             <div className="mt-4">
               <div className="glass-card p-1 rounded-2xl overflow-hidden h-[600px] relative">
                 <iframe 
                   src="https://www.google.com/maps/d/embed?mid=1WUYfyxf3toKH8LvIqU3IR-mphPo&ehbc=2E312F" 
+                  width="100%" 
+                  height="100%"
+                  className="border-0 w-full h-full rounded-xl"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          )}
+
+          {showComisariasNqnMap && (
+            <div className="mt-4">
+              <div className="glass-card p-1 rounded-2xl overflow-hidden h-[600px] relative">
+                <iframe 
+                  src="https://www.google.com/maps/d/embed?mid=1ODHsLAbA5r3cG8_oM-A1og6jqC8MIOeJ&hl=es&ehbc=2E312F" 
                   width="100%" 
                   height="100%"
                   className="border-0 w-full h-full rounded-xl"
