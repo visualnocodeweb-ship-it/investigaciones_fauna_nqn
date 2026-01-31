@@ -289,7 +289,14 @@ export default function InteractiveCsvMap() {
           <HeatmapLayer points={heatmapPoints} active={activeViews.heatmap} />
         </MapContainer>
 
-        <div className="absolute bottom-0 left-0 right-0 sm:top-3 sm:right-3 sm:left-auto sm:bottom-auto z-[1000] w-full sm:w-auto sm:max-w-sm bg-black/60 backdrop-blur-md p-4 sm:rounded-xl shadow-lg">
+        {/* Botón de toggle siempre visible en móviles */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:hidden z-[1001]">
+          <button className="bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full shadow-lg" onClick={() => setIsPanelOpen(!isPanelOpen)}>
+            {isPanelOpen ? 'Cerrar Filtros' : 'Abrir Filtros'}
+          </button>
+        </div>
+
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 sm:top-3 sm:right-3 sm:left-auto sm:bottom-auto z-[1000] w-[calc(100%-2rem)] max-w-sm max-h-[80vh] overflow-y-auto bg-black/60 backdrop-blur-md p-4 sm:rounded-xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold text-white">Tablero de Control</h2>
             <div className="flex gap-2">
@@ -297,9 +304,6 @@ export default function InteractiveCsvMap() {
                 <ViewButton view="kml" label="Investigaciones Fauna" />
                 <ViewButton view="heatmap" label="Calor" />
             </div>
-            <button className="sm:hidden text-white" onClick={() => setIsPanelOpen(!isPanelOpen)}>
-              {isPanelOpen ? 'Cerrar' : 'Filtros'}
-            </button>
           </div>
 
           <div className={`space-y-3 ${isPanelOpen ? '' : 'hidden'}`}>
