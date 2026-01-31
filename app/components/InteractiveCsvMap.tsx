@@ -174,21 +174,41 @@ export default function InteractiveCsvMap() {
   }, [selectedFilters, allData]);
 
   const heatmapPoints = useMemo(() => {
-    return filteredData.map(item => [item.latitud, item.longitud, 1.0]); // Increased intensity to 1.0
+    return filteredData.map(item => [item.latitud, item.longitud, 1.0] as [number, number, number]); // Increased intensity to 1.0
   }, [filteredData]);
 
-  const handleFilterChange = (filterType, value) => {
+  type SelectedFiltersType = {
+    ano: string;
+    tipoDeAnimal: string;
+    region: string;
+    tipoDeIntervencion: string;
+  };
+
+  type ActiveViewKeys = 'markers' | 'kml' | 'heatmap';
+
+  interface ViewButtonProps {
+    view: ActiveViewKeys;
+    label: string;
+  }
+
+  interface FilterButtonProps {
+    filterType: keyof SelectedFiltersType;
+    value: string;
+    label: string;
+  }
+
+  const handleFilterChange = (filterType: keyof SelectedFiltersType, value: string) => {
     setSelectedFilters(prev => ({ ...prev, [filterType]: value }));
   };
   
-  const handleViewToggle = (viewName) => {
+  const handleViewToggle = (viewName: keyof typeof activeViews) => {
     setActiveViews(prev => ({
       ...prev,
       [viewName]: !prev[viewName]
     }));
   };
 
-  const FilterButton = ({ filterType, value, label }) => {
+  const FilterButton = ({ filterType, value, label }: FilterButtonProps) => {
     const isActive = selectedFilters[filterType] === value;
     return (
       <button
@@ -202,7 +222,7 @@ export default function InteractiveCsvMap() {
     );
   };
   
-  const ViewButton = ({ view, label }) => {
+  const ViewButton = ({ view, label }: ViewButtonProps) => {
     const isActive = activeViews[view];
     return (
         <button 
@@ -248,7 +268,7 @@ export default function InteractiveCsvMap() {
               <Marker
                 key={item.id}
                 position={[item.latitud, item.longitud]}
-                icon={getColoredIcon(animalColors[item.tipoDeAnimal] || animalColors.default)}
+                icon={getColoredIcon(animalColors[item.tipoDeAnimal as keyof typeof animalColors] || animalColors.default)}
               >
                 <Popup>
                   <div className="text-sm">
